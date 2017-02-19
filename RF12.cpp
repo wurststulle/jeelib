@@ -810,6 +810,24 @@ void rf12_sleep (char n) {
     rxstate = TXIDLE;
 }
 
+#define PWRMGT_DEFAULT (0x01 | 0x02 | 0)
+#define RFM12_PWRMGT_EW 0x02
+
+void rf12_sleep1 (uint16_t val) {
+    //rf12_control(RF_WAKEUP_TIMER | (val & 0x1FFF));
+    rf12_control(RF_WAKEUP_MODE);
+
+	//rf12_control(0x8200 | (PWRMGT_DEFAULT & ~RFM12_PWRMGT_EW));
+	//rf12_control(0x8200 | PWRMGT_DEFAULT);
+
+    rxstate = TXIDLE;
+}
+
+void rf12_wakeup () {
+    rf12_control(RF_IDLE_MODE);
+    rxstate = TXIDLE;
+}
+
 /// @details
 /// This checks the status of the RF12 low-battery detector. It will be 1 when
 /// the supply voltage drops below 3.1V, and 0 otherwise. This can be used to

@@ -126,6 +126,8 @@ void rf12_onOff(uint8_t value);
 /// Power off the RFM12B, ms > 0 sets watchdog to wake up again after N * 32 ms.
 /// @note if off, calling this with -1 can be used to bring the RFM12B back up.
 void rf12_sleep(char n);
+void rf12_sleep1 (uint16_t val);
+void rf12_wakeup ();
 
 /// Return true if the supply voltage is below 3.1V.
 char rf12_lowbat(void);
